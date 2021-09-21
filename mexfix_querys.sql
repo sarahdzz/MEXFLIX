@@ -66,5 +66,24 @@ SELECT ms.title, ms.category, ms.country, ms.genres, ms.premiere, s.status
 	WHERE (s.status = 'Release' OR s.status = 'Finished' OR s.status = 'In Issue') AND ms.category = 'Serie' ORDER BY ms.premiere;
 
 
+/*CONSULTA FULLTEXT KEY 
 
-    
+FULLTEXT KEY :
+*/
+
+SELECT * FROM  movieseries 
+WHERE MATCH(title, genres, actors, author)
+AGAINST ('stallone' IN BOOLEAN MODE);
+
+SELECT * FROM  movieseries 
+WHERE MATCH(title, genres, actors, author)
+AGAINST ('Comedy' IN BOOLEAN MODE);
+
+SELECT ms.title, ms.category, ms.country, ms.genres, ms.premiere, s.status
+	FROM movieseries AS ms
+	INNER JOIN status AS s
+	ON ms.status = s.status_id
+	WHERE MATCH(ms.title, ms.author, ms.actors, ms.genres)
+	AGAINST('drama' IN BOOLEAN MODE)
+	ORDER BY ms.premiere;
+
