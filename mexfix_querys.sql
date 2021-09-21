@@ -87,3 +87,37 @@ SELECT ms.title, ms.category, ms.country, ms.genres, ms.premiere, s.status
 	AGAINST('drama' IN BOOLEAN MODE)
 	ORDER BY ms.premiere;
 
+-- 17.INTEGRIDAD REFERENCIAL
+
+SELECT count(*) FROM movieseries WHERE status='1';
+SELECT count(*) FROM movieseries WHERE status='2';
+SELECT count(*) FROM movieseries WHERE status='3';
+SELECT count(*) FROM movieseries WHERE status='4';
+SELECT count(*) FROM movieseries WHERE status='5';
+
+-- añadimos un nuevo status 
+INSERT into status set status = 'otro status', status_id=0;
+
+SELECT * FROM status;
+
+SELECT COUNT(*) FROM movieseries WHERE status = 6;
+
+/* MySQL permite eliminar los registros existentes en la tabla movieseries del status 1 'Coming Soon' */
+DELETE FROM movieseries WHERE status = 1;
+
+/* Permite eliminar el registro con el status_id 1 porque ya no hay registros asociados en la tabla dependiente(movieseries) */
+DELETE FROM status WHERE status_id = 1;
+
+/* MySQL no me permite eliminar el status_id 2 porque existen registros asociados a él en la tabla dependiente(movieseries) */
+DELETE FROM status WHERE status_id = 2;
+
+SELECT ms.title, ms.status, s.status_id, s.status
+	FROM movieseries AS ms
+	INNER JOIN status AS s
+	ON ms.status = s.status_id
+	ORDER BY s.status, ms.title;
+
+/* Cuando Actualizo los valores del registro del status 2, en automático se actualizan los registros vinculados en la tabla dependiente(movieseries) */
+UPDATE status 
+	SET status_id = 7, status = 'Estrenada'
+	WHERE status_id = 2;
