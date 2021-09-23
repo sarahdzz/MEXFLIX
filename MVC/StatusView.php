@@ -26,5 +26,19 @@ for ($n = 0; $n < count($status_data); $n++) {
 echo '</table>';
 
 echo '<h2>Insertar Status</h2>';
+
+$new_status = array(
+    'status_id' => 0,
+    'status' => 'otro status'
+);
+//$status->create($new_status);
+
 echo '<h2>Actualizando Status</h2>';
+$update_status = array(
+    'status_id' => 6,
+    'status' => 'other status'
+);
+//$status->update($update_status);
+
 echo '<h2>Elimindo Status</h2>';
+//$status->delete(6);

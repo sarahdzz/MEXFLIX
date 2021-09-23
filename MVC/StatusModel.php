@@ -3,7 +3,7 @@ require_once('Model.php');
 
 class StatusModel extends Model
 {
-    public $status_idSM;
+    public $status_id;
     public $status;
 
 
@@ -12,9 +12,15 @@ class StatusModel extends Model
         $this->db_name = 'mexflix';
     }
 
-    public function create()
+    public function create($status_data = array())
     {
+        foreach ($status_data as $key => $value) {
+            $$key = $value;
+        }
+        $this->query = "INSERT INTO status (status_id, status) VALUES ($status_id, '$status')";
+        $this->set_query();
     }
+    //read=consultar->select->status
     public function read($status_id = '')
     {
         /*?true:false Operador ternario*/
@@ -34,11 +40,19 @@ class StatusModel extends Model
         return $data;
     }
 
-    public function update()
+    public function update($status_data = array())
     {
+        foreach ($status_data as $key => $value) {
+            $$key = $value;
+        }
+
+        $this->query = "UPDATE status SET status_id = $status_id, status = '$status' WHERE status_id = $status_id";
+        $this->set_query();
     }
-    public function delete()
+    public function delete($status_id = '')
     {
+        $this->query = "DELETE FROM status WHERE status_id = $status_id";
+        $this->set_query();
     }
 
 
