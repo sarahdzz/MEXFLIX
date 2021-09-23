@@ -60,6 +60,6 @@ class StatusModel extends Model
     public function __destruct()
     {
 
-        unset($StatusModel);
+        unset($this->db_name);
     }
 }
