@@ -1,9 +1,7 @@
 <?php
-require_once('StatusModel.php');
-
 class StatusController
 {
-    /*inicializara elstatusmodel*/
+    /*inicializara el statusmodel*/
     private $model;
 
     public function __construct()
@@ -11,24 +9,19 @@ class StatusController
         $this->model = new StatusModel();
     }
 
-    public function create($status_data = array())
+    public function set($status_data = array())
     {
-        return $this->model->create($status_data);
+        return $this->model->set($status_data);
     }
 
-    public function read($status_id = '')
+    public function get($status_id = '')
     {
-        return $this->model->read($status_id);
+        return $this->model->get($status_id);
     }
 
-    public function update($status_data = array())
+    public function del($status_id = '')
     {
-        return $this->model->update($status_data);
-    }
-
-    public function delete($status_id = '')
-    {
-        return $this->model->delete($status_id);
+        return $this->model->del($status_id);
     }
 
     public function __destruct()

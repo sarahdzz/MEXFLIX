@@ -6,8 +6,7 @@ abstract class Model
     private static $db_host = 'localhost';
     private static $db_user = 'root';
     private static $db_pass = '';
-
-    protected $db_name;
+    private static $db_name = 'mexflix';
     private static $db_charset = 'utf8';
     private $conn;
     protected $query;
