@@ -1,5 +1,9 @@
 <?php
-// CONEXION Y CONSULTAS A LA BD
+// CONEXION Y CONSULTAS A LA BD CON CLASE ABSTRACTA
+/* Las clases definidas como abstractas no se pueden instanciar y cualquier 
+clase que contiene al menos un método abstracto debe ser definida 
+como tal. Los métodos definidos como abstractos simplemente declaran la 
+firma del método, pero no pueden definir la implementación. */
 
 abstract class Model
 {
@@ -14,7 +18,7 @@ abstract class Model
     private $conn;
     //para hacer consultas
     protected $query;
-    //trae registros(ROWS) de la bd 
+    //trae registros(ROWS) de la bd y guarda los querys que hacesmos en un arreglo 
     protected $rows = array();
 
     //METODOS
@@ -74,7 +78,7 @@ abstract class Model
         $result->close();
 
         $this->db_close();
-
+        //array_pop — Extrae el último elemento del final del array =null
         return array_pop($this->rows);
     }
 }
