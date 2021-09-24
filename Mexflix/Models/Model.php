@@ -26,7 +26,7 @@ abstract class Model
             self::$db_host,
             self::$db_user,
             self::$db_pass,
-            $this->db_name
+            self::$db_name
         );
         $this->conn->set_charset(self::$db_charset);
     }
